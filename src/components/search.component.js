@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 export default class Search extends React.Component {
   constructor(props) {
@@ -8,7 +9,13 @@ export default class Search extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state ={
-      search: ''
+      search: '',
+      results_name: '',
+      results_summoner_level: '',
+      results_tier_rank: '',
+      results_win_ratio: '',
+      results_total_games: '',
+      results_smurf_score: ''
     }
   }
 
@@ -18,16 +25,50 @@ export default class Search extends React.Component {
     })
   }
 
-  onSubmit(e) {
+  async componentDidMount() {
+    await axios.post(`http://localhost:4000/summoner/search/"${this.state.search}"`)
+               .then(res => {
+                 this.setState({ 
+                   results_name: res.data[0].name,
+                   results_summoner_level: res.data[0].summoner_level,
+                   results_tier_rank: res.data[0].tierRank,
+                   results_win_ratio: res.data[0].winratio,
+                   results_total_games: res.data[0].total_games,
+                   results_smurf_score: res.data[0].smurf_score
+                 });
+                })
+                .catch(function (err) {
+                  console.log(err);
+                })
+
+  }
+
+  async onSubmit(e) {
     e.preventDefault();
 
     console.log(`Form submitted:`);
     console.log(`Search: ${this.state.search}`);
 
+    await axios.post(`http://localhost:4000/summoner/search/"${this.state.search}"`)
+         .then(res => {
+           this.setState({ 
+             results_name: res.data[0].name,
+             results_summoner_level: res.data[0].summoner_level,
+             results_tier_rank: res.data[0].tierRank,
+             results_win_ratio: res.data[0].winratio,
+             results_total_games: res.data[0].total_games,
+             results_smurf_score: res.data[0].smurf_score
+           });
+         })
+         .catch(function (err) {
+           console.log(err);
+         })
+
     this.setState({
       search: ''
     })
   }
+
   render() {
     return (
       <div style={{marginTop: 10}}>
@@ -45,6 +86,29 @@ export default class Search extends React.Component {
             <input type="submit" value="Search" className="btn btn-primary" />
           </div>
         </form>
+        <h3>Summoner Details</h3>
+        <table className="table table-striped" style={{ marginTop: 20 }}>
+          <thead>
+            <tr>
+              <th>Summoner Name</th>
+              <th>Level</th>
+              <th>Division</th>
+              <th>Win Rate</th>
+              <th>Total Games Played</th>
+              <th>Smurf Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr> 
+              <td>{this.state.results_name}</td>
+              <td>{this.state.results_summoner_level}</td>
+              <td>{this.state.results_tier_rank}</td>
+              <td>{this.state.results_win_ratio}</td>
+              <td>{this.state.results_total_games}</td>
+              <td>{this.state.results_smurf_score}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     )
   }

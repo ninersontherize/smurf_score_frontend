@@ -23,14 +23,14 @@ class App extends React.Component {
                   <Link to="/" className="nav-link">Home</Link>
                 </li>
                 <li className="navbar-item">
-                  <Link to="/search/:id" className="nav-link">Search for a Smurf</Link>
+                  <Link to="/search/" className="nav-link">Search for a Smurf</Link>
                 </li>
               </ul>
             </div>
           </nav>
           
           <Route path="/" exact component={Home} />
-          <Route path="/search/:id" component={Search} />
+          <Route path="/search/" component={Search} />
           {/*<Route path="/history" component={MatchHistory} />*/}
         </div>
       </Router>
