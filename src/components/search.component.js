@@ -51,7 +51,7 @@ export default class Search extends React.Component {
 
     await axios.post(`http://localhost:4000/summoner/search/"${this.state.search}"`)
          .then(res => {
-           if (res.data.length == 1) {
+           if (res.data.length === 1) {
              this.setState({ 
                results_name: res.data[0].name,
                results_summoner_level: res.data[0].summoner_level,
