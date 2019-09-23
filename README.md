@@ -1,8 +1,10 @@
 # smurf_score_frontend
 Welcome to the Smurf Score Front-end repository
 
+## Smurf Account
 ![Smurf](/smurf.png)
 
+## Normal Account
 ![Normal Account](/not-smurf.png)
 
 ## Instructions
