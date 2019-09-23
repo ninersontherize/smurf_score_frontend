@@ -20,9 +20,6 @@ class App extends React.Component {
             <div className="collapse navbar-collapse">
               <ul className="navbar-nav mr-auto">
                 <li className="navbar-item">
-                  <Link to="/" className="nav-link">Home</Link>
-                </li>
-                <li className="navbar-item">
                   <Link to="/search/" className="nav-link">Search for a Smurf</Link>
                 </li>
               </ul>

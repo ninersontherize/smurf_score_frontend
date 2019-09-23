@@ -51,14 +51,25 @@ export default class Search extends React.Component {
 
     await axios.post(`http://localhost:4000/summoner/search/"${this.state.search}"`)
          .then(res => {
-           this.setState({ 
-             results_name: res.data[0].name,
-             results_summoner_level: res.data[0].summoner_level,
-             results_tier_rank: res.data[0].tierRank,
-             results_win_ratio: res.data[0].winratio,
-             results_total_games: res.data[0].total_games,
-             results_smurf_score: res.data[0].smurf_score
-           });
+           if (res.data.length == 1) {
+             this.setState({ 
+               results_name: res.data[0].name,
+               results_summoner_level: res.data[0].summoner_level,
+               results_tier_rank: res.data[0].tierRank,
+               results_win_ratio: res.data[0].winratio,
+               results_total_games: res.data[0].total_games,
+               results_smurf_score: res.data[0].smurf_score
+             });
+            } else {
+              this.setState({ 
+                results_name: res.data.name,
+                results_summoner_level: res.data.summoner_level,
+                results_tier_rank: res.data.tierRank,
+                results_win_ratio: res.data.winratio,
+                results_total_games: res.data.total_games,
+                results_smurf_score: res.data.smurf_score
+              });
+            }
          })
          .catch(function (err) {
            console.log(err);
