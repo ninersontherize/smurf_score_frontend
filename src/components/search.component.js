@@ -31,8 +31,8 @@ export default class Search extends React.Component {
                  this.setState({ 
                    results_name: res.data[0].name,
                    results_summoner_level: res.data[0].summoner_level,
-                   results_tier_rank: res.data[0].tierRank,
-                   results_win_ratio: res.data[0].winratio,
+                   results_tier_rank: res.data[0].tier_rank,
+                   results_win_ratio: res.data[0].overall_win_ratio,
                    results_total_games: res.data[0].total_games,
                    results_smurf_score: res.data[0].smurf_score
                  });
@@ -55,8 +55,8 @@ export default class Search extends React.Component {
              this.setState({ 
                results_name: res.data[0].name,
                results_summoner_level: res.data[0].summoner_level,
-               results_tier_rank: res.data[0].tierRank,
-               results_win_ratio: res.data[0].winratio,
+               results_tier_rank: res.data[0].tier_rank,
+               results_win_ratio: res.data[0].overall_win_ratio,
                results_total_games: res.data[0].total_games,
                results_smurf_score: res.data[0].smurf_score
              });
@@ -64,8 +64,8 @@ export default class Search extends React.Component {
               this.setState({ 
                 results_name: res.data.name,
                 results_summoner_level: res.data.summoner_level,
-                results_tier_rank: res.data.tierRank,
-                results_win_ratio: res.data.winratio,
+                results_tier_rank: res.data.tier_rank,
+                results_win_ratio: res.data.overall_win_ratio,
                 results_total_games: res.data.total_games,
                 results_smurf_score: res.data.smurf_score
               });
